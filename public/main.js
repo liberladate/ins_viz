@@ -1,4 +1,4 @@
-function graph_for_data(file_name) {
+function graph_for_data(file_name, measure_unit) {
 
     function range_for_ani(values) {
         return [values[0].ani, values[values.length - 1].ani];
@@ -91,6 +91,13 @@ function graph_for_data(file_name) {
             .attr("class", "line")
             .attr("clip-path", "url(#clip)")
             .attr("d", line(values));
+
+        svg.append("text")
+            .attr("x", width + 6)
+            .attr("y", -6)
+            .attr("font-size", "16px")
+            .style("text-anchor", "end")
+            .text(measure_unit);
 
 
     });

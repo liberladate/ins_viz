@@ -16,5 +16,5 @@ end
 
 get '/graph/:table_id' do
   table = Table.new(params[:table_id])
-  haml :graph, :locals => {:table_id => params[:table_id], :table_description => table.description}
+  haml :graph, :locals => {:table_id => params[:table_id], :table_description => table.description, :measure_unit => table.measure_unit}
 end

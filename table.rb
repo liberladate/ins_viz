@@ -12,6 +12,19 @@ class Table
     table_data['description']
   end
 
+  def measure_unit
+    scheme = table_data['scheme']
+
+    mu = 'Unitate de masure'
+    scheme.each_pair do |column_name, values|
+      if column_name.start_with?('UM:')
+        mu = values.keys.first
+      end
+    end
+
+    mu
+  end
+
   def query
     scheme = table_data['scheme']
 
