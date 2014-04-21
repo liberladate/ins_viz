@@ -17,7 +17,8 @@ function graph_for_data(file_name) {
     }
 
     function type(d) {
-        d.ani = parse(d.ani.split('Anul ')[1]);
+        d.ani = parse(d[" Ani"].split('Anul ')[1]);
+        d.valoare = parseFloat($.trim(d[' Valoare']))
         return d;
     }
 
@@ -56,11 +57,12 @@ function graph_for_data(file_name) {
 
     d3.csv(file_name, type, function (error, values) {
 
+        console.log(values);
         x.domain(range_for_ani(values));
         y.domain([min(values), max(values)]).nice();
 
         // Add an SVG element with the desired dimensions and margin.
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select("#graph_area").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -95,4 +97,3 @@ function graph_for_data(file_name) {
 
 }
 
-graph_for_data('example.csv');

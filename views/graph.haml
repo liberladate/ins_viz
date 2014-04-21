@@ -1,0 +1,10 @@
+%link{ :rel=> "stylesheet", :type => "text/css",  :href => "/graph.css" }
+%script{ :src => "http://d3js.org/d3.v3.min.js" }
+%script{ :src => "//code.jquery.com/jquery-1.10.2.js"}
+%script{ :src => "/main.js" }
+%body
+  %h2 #{table_description}
+  %div#graph_area
+  %script
+    graph_for_data("/table/#{table_id}");
+
