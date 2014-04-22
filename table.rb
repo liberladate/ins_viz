@@ -39,6 +39,10 @@ class Table
         end
       end
 
+      if column_name.include?('Judete') || column_name.include?('Localitati')
+        column_values << '112'
+      end
+
       if column_name.include?('Ani')
         column_values << values.values.join(',')
       end
