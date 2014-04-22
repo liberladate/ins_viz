@@ -7,4 +7,7 @@
   %div#graph_area
   %script
     graph_for_data("/table/#{table_id}", "#{measure_unit}");
-
+  %div
+    %ol
+      - columns.each_pair do |column, value|
+        %li #{column}: #{value}

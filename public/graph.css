@@ -33,3 +33,7 @@ path.area {
     fill: none;
     stroke: #000;
 }
+
+li {
+    font-size: 16px;
+}

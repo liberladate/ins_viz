@@ -15,7 +15,7 @@ class Table
   def measure_unit
     scheme = table_data['scheme']
 
-    mu = 'Unitate de masure'
+    mu = 'Unitate de masura'
     scheme.each_pair do |column_name, values|
       if column_name.start_with?('UM:')
         mu = values.keys.first
@@ -25,35 +25,58 @@ class Table
     mu
   end
 
+  def columns_with_selected_values
+    rez = {}
+    columns.each_pair do |column, row_and_index|
+      rez[column] = row_and_index[:row]
+    end
+    rez
+  end
+
   def query
+    columns.values.collect {|row_and_index| row_and_index[:index]}.join(':')
+  end
+
+  def csv
+    csv = @connection.post('/shop/excelPivot.jsp', { :matCode => id, :encQuery => query }).body
+    csv.split("\n")[1..-1].collect do |line|
+      (line.split(',').collect &:strip).join(',')
+    end.join("\n")
+
+  end
+
+  private
+  def columns
     scheme = table_data['scheme']
 
-    column_values = []
+    column_values = {}
     scheme.each_pair do |column_name, values|
       if (not column_name.include?('Ani')) && (not column_name.start_with?('UM:'))
-        values.each_pair do |key,value|
+        values.each_pair do |key, value|
           if key.upcase.include?('TOTAL')
-            column_values << value
+            column_values[column_name] = { :row => key, :index => value}
             break
           end
         end
       end
 
       if column_name.include?('Judete') || column_name.include?('Localitati') || column_name.include?('Municipii si orase')
-        column_values << '112'
+        column_values[column_name] = { :row => 'Total', :index => '112'}
       end
 
       if column_name.include?('Ani')
-        column_values << values.values.join(',')
+        years = values.keys.collect do |string_year|
+          string_year.split('Anul ').last.to_i
+        end
+
+        column_values[column_name] = { :row => "Intre #{years.min} si #{years.max}", :index => values.values.join(',')}
       end
 
       if column_name.start_with?('UM:')
-        column_values << values[values.keys.first]
+        column_values[column_name] = { :row => values.keys.first, :index => values[values.keys.first]}
       end
     end
-
-    column_values.join(':')
-    #'105:108:112:4399,4418,4437,4456,4475,4494,4513,4532,4551,4570,4589,4608,4627,4646,4665,4684:9685'
+    column_values
   end
 
   def table_data
@@ -69,13 +92,4 @@ class Table
     end
     table
   end
-
-  def csv
-    csv = @connection.post('/shop/excelPivot.jsp', { :matCode => id, :encQuery => query }).body
-    csv.split("\n")[1..-1].collect do |line|
-      (line.split(',').collect &:strip).join(',')
-    end.join("\n")
-
-  end
-
 end
