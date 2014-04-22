@@ -39,7 +39,7 @@ class Table
         end
       end
 
-      if column_name.include?('Judete') || column_name.include?('Localitati')
+      if column_name.include?('Judete') || column_name.include?('Localitati') || column_name.include?('Municipii si orase')
         column_values << '112'
       end
 
