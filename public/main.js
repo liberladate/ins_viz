@@ -17,8 +17,8 @@ function graph_for_data(file_name, measure_unit) {
     }
 
     function type(d) {
-        d.ani = parse(d[" Ani"].split('Anul ')[1]);
-        d.valoare = parseFloat($.trim(d[' Valoare']))
+        d.ani = parse(d["Ani"].split('Anul ')[1]);
+        d.valoare = parseFloat($.trim(d['Valoare']))
         return d;
     }
 

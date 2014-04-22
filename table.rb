@@ -72,7 +72,10 @@ class Table
 
   def csv
     csv = @connection.post('/shop/excelPivot.jsp', { :matCode => id, :encQuery => query }).body
-    csv.split("\n")[1..-1].join("\n")
+    csv.split("\n")[1..-1].collect do |line|
+      (line.split(',').collect &:strip).join(',')
+    end.join("\n")
+
   end
 
 end
