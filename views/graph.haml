@@ -6,7 +6,7 @@
   %h2 #{table_description}
   %div#graph_area
   %script
-    graph_for_data("/table/#{table_id}", "#{measure_unit}");
+    graph_for_data("#{url_for_table}", "#{measure_unit}");
   %div
     %ol
       - columns.each_pair do |column, value|
