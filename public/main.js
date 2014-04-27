@@ -22,9 +22,9 @@ function graph_for_data(file_name, measure_unit) {
         return d;
     }
 
-    var margin = {top: 80, right: 80, bottom: 80, left: 80};
+    var margin = {top: 40, right: 80, bottom: 40, left: 20};
 
-    var width = 960 - margin.left - margin.right;
+    var width = 860 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
 
     var parse = d3.time.format("%Y").parse

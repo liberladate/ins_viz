@@ -1,13 +1,11 @@
 %link{ :rel=> "stylesheet", :type => "text/css",  :href => "/graph.css" }
+%h2 #{table_description}
+%div.col-md-9#graph_area
+%div.col-md-3
+  %ol
+    - columns.each_pair do |column, value|
+      %li #{column}: #{value}
 %script{ :src => "http://d3js.org/d3.v3.min.js" }
-%script{ :src => "//code.jquery.com/jquery-1.10.2.js"}
 %script{ :src => "/main.js" }
-%body
-  %h2 #{table_description}
-  %div#graph_area
-  %script
-    graph_for_data("#{url_for_table}", "#{measure_unit}");
-  %div
-    %ol
-      - columns.each_pair do |column, value|
-        %li #{column}: #{value}
+%script
+  graph_for_data("#{url_for_table}", "#{measure_unit}");
