@@ -4,7 +4,9 @@
 %div.col-md-3
   %ol
     - columns.each_pair do |column, value|
-      %li #{column}: #{value}
+      %li
+        %b #{column}
+        = ": #{value}"
 %script{ :src => "http://d3js.org/d3.v3.min.js" }
 %script{ :src => "/main.js" }
 %script

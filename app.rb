@@ -1,6 +1,9 @@
 require 'sinatra'
 require 'faraday'
 require_relative 'table'
+require 'uri'
+
+include URI::Escape
 
 set :public_folder, 'public'
 
@@ -11,23 +14,12 @@ end
 get '/table/:table_id' do
   content_type 'text/csv'
 
-  query = {}
-  request.query_string.split('&').each do |filter|
-    key,value = filter.split('=')
-    query[key] = value
-  end
-
-  Table.new(params[:table_id], query).csv
+  Table.new(params[:table_id], create_query(request)).csv
 end
 
 get '/graph/:table_id' do
-  query = {}
-  request.query_string.split('&').each do |filter|
-    key,value = filter.split('=')
-    query[key] = value
-  end
+  table = Table.new(params[:table_id], create_query(request))
 
-  table = Table.new(params[:table_id], query)
   haml :graph,
        :locals => {url_for_table: url_for_table(params[:table_id], request.query_string),
                    table_description: table.description,
@@ -35,6 +27,15 @@ get '/graph/:table_id' do
                    columns: table.columns_with_selected_values}
 end
 
+def create_query(request)
+  query = {}
+  query_string = decode(request.query_string)
+  query_string  .split('&').each do |filter|
+    key, value = filter.split('=')
+    query[key] = value
+  end
+  query
+end
 
 def url_for_table(table_id, query)
   query = "?#{query}" unless query == ''

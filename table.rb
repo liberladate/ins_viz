@@ -86,6 +86,8 @@ class Table
     if column_name.start_with?('UM:')
       return {:row => values.keys.first, :index => values[values.keys.first]}
     end
+
+    return {:row => values.keys.first, :index => values[values.keys.first]}
   end
 
   def table_data
