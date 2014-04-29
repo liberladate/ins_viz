@@ -1,11 +1,12 @@
 require 'json'
+require_relative 'cache'
 
 class Table
 
   attr_reader :id
-  def initialize(id, query = {})
+  def initialize(settings, id, query = {})
     @id = id
-    @connection = Faraday.new(:url => 'http://statistici.insse.ro')
+    @cache = Cache.new(settings)
     @query = query
   end
 
@@ -39,7 +40,7 @@ class Table
   end
 
   def csv
-    csv = @connection.post('/shop/excelPivot.jsp', { :matCode => id, :encQuery => query }).body
+    csv = @cache.get(id, query)
     csv.split("\n")[1..-1].collect do |line|
       (line.split(',').collect &:strip).join(',')
     end.join("\n")

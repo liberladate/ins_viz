@@ -18,11 +18,11 @@ end
 get '/table/:table_id' do
   content_type 'text/csv'
 
-  Table.new(params[:table_id], create_query(request)).csv
+  Table.new(settings, params[:table_id], create_query(request)).csv
 end
 
 get '/graph/:table_id' do
-  table = Table.new(params[:table_id], create_query(request))
+  table = Table.new(settings, params[:table_id], create_query(request))
 
   haml :graph,
        :locals => {url_for_table: url_for_table(params[:table_id], request.query_string),
