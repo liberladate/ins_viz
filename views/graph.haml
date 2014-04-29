@@ -1,13 +1,20 @@
 %link{ :rel=> "stylesheet", :type => "text/css",  :href => "/graph.css" }
 %h2 #{table_description}
 %div.col-md-9#graph_area
-%div.col-md-3
-  %ol
-    - columns.each_pair do |column, value|
-      %li
-        %b #{column}
-        = ": #{value}"
+%div.col-md-3#select-area
+  - scheme.each_pair do |column, values|
+    %div.column_select
+      %b.column_name #{column}
+      %select.form-control
+        - values.keys.each do |value|
+          - if value == columns[column]
+            %option{ :selected=>'selected'} #{value}
+          - else
+            %option #{value}
+  %button#query_btn.btn.btn-primary Selecteaza
+
 %script{ :src => "http://d3js.org/d3.v3.min.js" }
 %script{ :src => "/main.js" }
+%script{ :src => "/graph.js" }
 %script
   graph_for_data("#{url_for_table}", "#{measure_unit}");

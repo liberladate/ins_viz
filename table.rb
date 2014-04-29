@@ -43,15 +43,23 @@ class Table
     csv.split("\n")[1..-1].collect do |line|
       (line.split(',').collect &:strip).join(',')
     end.join("\n")
+  end
 
+
+  def scheme
+    all = table_data['scheme'].dup
+
+    all.keys.each do |key|
+      all.delete(key) if (key=='Ani' or key.start_with?('UM:'))
+    end
+
+    all
   end
 
   private
   def columns
-    scheme = table_data['scheme']
-
     column_values = {}
-    scheme.each_pair do |column_name, values|
+    table_data['scheme'].each_pair do |column_name, values|
       column_values[column_name] = default_values_for_column(column_name, values)
       column_values[column_name] = value_from_query(column_name, values) if @query.include?(column_name)
     end

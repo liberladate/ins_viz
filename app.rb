@@ -24,7 +24,8 @@ get '/graph/:table_id' do
        :locals => {url_for_table: url_for_table(params[:table_id], request.query_string),
                    table_description: table.description,
                    measure_unit: table.measure_unit,
-                   columns: table.columns_with_selected_values}
+                   columns: table.columns_with_selected_values,
+                   scheme: table.scheme}
 end
 
 def create_query(request)
