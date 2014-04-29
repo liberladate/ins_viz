@@ -2,13 +2,17 @@ require 'sinatra'
 require 'faraday'
 require_relative 'table'
 require 'uri'
+require 'dalli'
+require 'memcachier'
 
 include URI::Escape
 
-set :public_folder, 'public'
+set :cache, Dalli::Client.new
 
 get '/' do
-  haml :home
+  settings.cache.set('title', 'Vizualizare grafica a datelor INS ')
+  puts settings.cache.get('title')
+  haml :home, :locals => { :title => settings.cache.get('title')}
 end
 
 get '/table/:table_id' do
@@ -25,7 +29,8 @@ get '/graph/:table_id' do
                    table_description: table.description,
                    measure_unit: table.measure_unit,
                    columns: table.columns_with_selected_values,
-                   scheme: table.scheme}
+                   scheme: table.scheme,
+                   title: settings.cache.get('title')}
 end
 
 def create_query(request)
