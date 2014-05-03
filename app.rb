@@ -1,9 +1,10 @@
 require 'sinatra'
 require 'faraday'
-require_relative 'table'
 require 'uri'
 require 'dalli'
 require 'memcachier'
+
+require_relative 'app/table'
 
 include URI::Escape
 

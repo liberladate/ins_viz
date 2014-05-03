@@ -6,3 +6,6 @@ gem 'haml'
 
 gem 'dalli'
 gem 'memcachier'
+
+gem 'rspec'
+gem 'capybara'
