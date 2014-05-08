@@ -1,11 +1,12 @@
 path.line {
     fill: none;
-    stroke: #666;
+    stroke: #279ED9;
     stroke-width: 1.5px;
 }
 
 path.area {
-    fill: #e7e7e7;
+    fill: #ABD7ED;
+    fill-opacity: 0.5;
 }
 
 .axis {
@@ -31,4 +32,27 @@ path.area {
 
 li {
     font-size: 16px;
+}
+
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.big-number {
+    margin-top: 5px;
+    margin-left: 60px;
+    font-size: 35px;
+    font-family: "sans-serif";
+    text-align: center;
+    color: #279ED9;
+}
+
+.small-number {
+    margin-top: 50px;
+    margin-left: 60px;
+    font-size: 20px;
+    font-family: "sans-serif";
+    text-align: center;
+    color: #ABD7ED;
 }

@@ -1,17 +1,22 @@
 %link{ :rel=> "stylesheet", :type => "text/css",  :href => "/graph.css" }
 %h2 #{table_description}
 %div.col-md-9#graph_area
-%div.col-md-3#select-area
-  - scheme.each_pair do |column, values|
-    %div.column_select
-      %b.column_name #{column}
-      %select.form-control
-        - values.keys.each do |value|
-          - if value == columns[column]
-            %option{ :selected=>'selected'} #{value}
-          - else
-            %option #{value}
-  %button#query_btn.btn.btn-primary Selecteaza
+%div.col-md-3
+  #select-area
+    - scheme.each_pair do |column, values|
+      %div.column_select
+        %b.column_name #{column}
+        %select.form-control
+          - values.keys.each do |value|
+            - if value == columns[column]
+              %option{ :selected=>'selected'} #{value}
+            - else
+              %option #{value}
+    %button#query_btn.btn.btn-primary Selecteaza
+
+  #year-selection.small-number
+  #number-selection.big-number
+
 
 %script{ :src => "http://d3js.org/d3.v3.min.js" }
 %script{ :src => "/main.js" }

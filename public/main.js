@@ -2,25 +2,25 @@ function graph_for_data(file_name, measure_unit) {
 
     function range_for_ani(values) {
         return [values[0].ani, values[values.length - 1].ani];
-    }
+    };
 
     function min(values) {
         return d3.min(values, function (d) {
             return d.valoare;
         });
-    }
+    };
 
     function max(values) {
         return d3.max(values, function (d) {
             return d.valoare;
         });
-    }
+    };
 
     function type(d) {
         d.ani = parse(d["Ani"].split('Anul ')[1]);
         d.valoare = parseFloat($.trim(d['Valoare']))
         return d;
-    }
+    };
 
     var margin = {top: 40, right: 80, bottom: 40, left: 20};
 
@@ -89,8 +89,7 @@ function graph_for_data(file_name, measure_unit) {
         // Add the line path.
         svg.append("path")
             .attr("class", "line")
-            .attr("clip-path", "url(#clip)")
-            .attr("d", line(values));
+            .attr("d", line(values))
 
         svg.append("text")
             .attr("x", width + 6)
@@ -99,6 +98,43 @@ function graph_for_data(file_name, measure_unit) {
             .style("text-anchor", "end")
             .text(measure_unit);
 
+        //focus
+        var focus = svg.append("g")
+            .attr("class", "focus")
+            .style("display", "none");
+
+        focus.append("circle")
+            .attr("fill","#279ED9")
+            .attr("r", 4);
+
+        focus.append("text")
+            .attr("x", -15)
+            .attr("y", -15)
+            .attr("dy", ".35em");
+
+        //overlay
+        svg.append("rect")
+            .attr("class", "overlay")
+            .attr("width", width)
+            .attr("height", height)
+            .style("cursor", "hand")
+            .on("mouseover", function() { focus.style("display", null); })
+            .on("mouseout", function() { focus.style("display", "none"); })
+            .on("mousemove", mousemove);
+
+        function mousemove() {
+            var bisectYears = d3.bisector(function(d) { return d.ani; }).left;
+            var x0 = x.invert(d3.mouse(this)[0]);
+            var i = bisectYears(values, x0, 1),
+                d0 = values[i - 1],
+                d1 = values[i],
+                d = x0 - d0.ani > d1.ani - x0 ? d1 : d0;
+            focus.attr("transform", "translate(" + x(d.ani) + "," + y(d.valoare) + ")");
+            focus.select("text").text(d.valoare);
+
+            $('#number-selection').text(d.valoare);
+            $('#year-selection').text(d.ani.getFullYear());
+        };
 
     });
 

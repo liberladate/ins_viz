@@ -7,6 +7,7 @@ require 'memcachier'
 require_relative 'app/table'
 
 include URI::Escape
+include Ronin
 
 set :cache, Dalli::Client.new
 
