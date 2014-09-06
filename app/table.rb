@@ -5,9 +5,9 @@ module Ronin
   class Table
 
     attr_reader :id
-    def initialize(settings, id, query = {})
+    def initialize(cache, id, query = {})
       @id = id
-      @cache = Cache.new(settings)
+      @cache = cache
       @query = query
     end
 

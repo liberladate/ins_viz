@@ -10,5 +10,11 @@ module Ronin
       end
     end
 
+    describe 'Table CSV' do
+      it 'should return a 200 page when asking for a table in csv format' do
+        expect(table('POP101A').response_headers['Content-Type']).to include 'text/csv'
+      end
+    end
+
   end
 end
