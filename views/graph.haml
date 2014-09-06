@@ -1,14 +1,14 @@
 %link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/graph.css' }
-%h2 #{table_description}
+%h2 #{table.description}
 %div.col-md-9#graph_area
 %div.col-md-3
   #select-area
-    - scheme.each_pair do |column, values|
+    - table.scheme.each_pair do |column, values|
       %div.column_select
         %b.column_name #{column}
         %select.form-control
           - values.keys.each do |value|
-            - if value == columns[column]
+            - if value == table.columns_with_selected_values[column]
               %option{ :selected=>'selected'} #{value}
             - else
               %option #{value}
@@ -22,4 +22,4 @@
 %script{ :src => '/js/main.js' }
 %script{ :src => '/js/graph.js' }
 %script
-  graph_for_data("#{url_for_table}", "#{measure_unit}");
+  graph_for_data("#{table.url}", "#{table.measure_unit}");

@@ -15,7 +15,7 @@ module Ronin
     set :cache, Dalli::Client.new
 
     get '/' do
-      haml :home, :locals => { :title => 'Vizualizare grafica a datelor INS '}
+      haml :home
     end
 
     get '/table/:table_id' do
@@ -28,13 +28,7 @@ module Ronin
 
       table = table_controller.get_table(params[:table_id], create_query(request))
 
-      haml :graph,
-           :locals => {url_for_table: url_for_table(params[:table_id], request.query_string),
-                       table_description: table.description,
-                       measure_unit: table.measure_unit,
-                       columns: table.columns_with_selected_values,
-                       scheme: table.scheme,
-                       title: 'Vizualizare grafica a datelor INS '}
+      haml :graph, locals: {table: table}
     end
 
     def create_query(request)
@@ -45,11 +39,6 @@ module Ronin
         query[key] = value
       end
       query
-    end
-
-    def url_for_table(table_id, query)
-      query = "?#{query}" unless query == ''
-      "/table/#{table_id}#{query}"
     end
 
   end

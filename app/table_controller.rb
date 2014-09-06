@@ -14,9 +14,8 @@ module Ronin
     end
 
     def csv_for(table_id, query)
-      table_entry = "#{table_id}-#{query}"
 
-      csv = @cache.get(table_entry)
+      csv = @cache.get_table(table_id, query)
 
       cleanup_data_from_ins(csv)
     end

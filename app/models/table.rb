@@ -6,6 +6,11 @@ module Ronin
       @query = query
     end
 
+    def url
+      query = "?#{@query}" unless @query == ''
+      "/table/#{@id}#{query}"
+    end
+
     def description
       table_data['description']
     end
