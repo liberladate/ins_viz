@@ -7,7 +7,13 @@ module Ronin
     end
 
     def url
-      query = "?#{@query}" unless @query == ''
+      query_string = ''
+      @query.each do |key, value|
+        query_string = "#{query_string}#{key}=#{value}&"
+      end
+      query_string = query_string[0...-1] unless query_string == ''
+      query = "?#{query_string}" unless @query == {}
+
       "/table/#{@id}#{query}"
     end
 
