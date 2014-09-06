@@ -1,13 +1,8 @@
-require 'json'
-require_relative 'cache'
-
 module Ronin
   class Table
-
     attr_reader :id
-    def initialize(cache, id, query = {})
+    def initialize(id, query = {})
       @id = id
-      @cache = cache
       @query = query
     end
 
@@ -39,14 +34,6 @@ module Ronin
     def query
       columns.values.collect { |row_and_index| row_and_index[:index] }.join(':')
     end
-
-    def csv
-      csv = @cache.get(id, query)
-      csv.split("\n")[1..-1].collect do |line|
-        (line.split(',').collect &:strip).join(',')
-      end.join("\n")
-    end
-
 
     def scheme
       all = table_data['scheme'].dup
@@ -113,5 +100,7 @@ module Ronin
       end
       table
     end
+
+
   end
 end

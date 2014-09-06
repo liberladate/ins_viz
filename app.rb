@@ -4,7 +4,7 @@ require 'uri'
 require 'dalli'
 require 'memcachier'
 
-require_relative 'app/table'
+require_relative 'app/table_controller'
 require_relative 'app/wiring'
 
 module Ronin
@@ -21,12 +21,12 @@ module Ronin
     get '/table/:table_id' do
       content_type 'text/csv'
 
-      Table.new(cache, params[:table_id], create_query(request)).csv
+      table_controller.csv_for(params[:table_id], create_query(request))
     end
 
     get '/graph/:table_id' do
 
-      table = Table.new(cache, params[:table_id], create_query(request))
+      table = table_controller.get_table(params[:table_id], create_query(request))
 
       haml :graph,
            :locals => {url_for_table: url_for_table(params[:table_id], request.query_string),
@@ -34,7 +34,7 @@ module Ronin
                        measure_unit: table.measure_unit,
                        columns: table.columns_with_selected_values,
                        scheme: table.scheme,
-                       title: settings.cache.get('title')}
+                       title: 'Vizualizare grafica a datelor INS '}
     end
 
     def create_query(request)
