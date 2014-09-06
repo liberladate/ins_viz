@@ -1,4 +1,4 @@
-%link{ :rel=> "stylesheet", :type => "text/css",  :href => "/graph.css" }
+%link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/graph.css' }
 %h2 #{table_description}
 %div.col-md-9#graph_area
 %div.col-md-3
@@ -18,8 +18,8 @@
   #number-selection.big-number
 
 
-%script{ :src => "http://d3js.org/d3.v3.min.js" }
-%script{ :src => "/main.js" }
-%script{ :src => "/graph.js" }
+%script{ :src => 'http://d3js.org/d3.v3.min.js' }
+%script{ :src => '/js/main.js' }
+%script{ :src => '/js/graph.js' }
 %script
   graph_for_data("#{url_for_table}", "#{measure_unit}");

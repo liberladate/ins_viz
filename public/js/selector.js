@@ -6,9 +6,9 @@ function create_button(label, next_level){
     button_holder.append(button);
 
     if (next_level['description']){
-        button.attr('data-toggle','tooltip')
-        button.attr('data-placement','bottom')
-        button.attr('title',next_level['description'])
+        button.attr('data-toggle','tooltip');
+        button.attr('data-placement','bottom');
+        button.attr('title',next_level['description']);
         button.tooltip();
     }
 
@@ -35,4 +35,4 @@ $(function(){
     holder = $('#selector');
     holder.tooltip();
     render_selectors_for(category_data);
-})
+});

@@ -1,5 +1,4 @@
 $(function(){
-    console.log('in ready');
     $('#query_btn').click(function(){
         console.log('in click');
         var columns = $('#select-area').find('.column_select');
@@ -10,7 +9,7 @@ $(function(){
             var column_name = $($(column).find('.column_name')).text();
             var column_value = $(column).find('select option:selected').text();
             query.push(column_name+"="+column_value);
-        })
+        });
 
 
         var query_string = query.join('&');
@@ -29,4 +28,4 @@ $(function(){
 
         window.location.href = parts.join('?')
     });
-})
+});

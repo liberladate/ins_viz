@@ -2,25 +2,25 @@ function graph_for_data(file_name, measure_unit) {
 
     function range_for_ani(values) {
         return [values[0].ani, values[values.length - 1].ani];
-    };
+    }
 
     function min(values) {
         return d3.min(values, function (d) {
             return d.valoare;
         });
-    };
+    }
 
     function max(values) {
         return d3.max(values, function (d) {
             return d.valoare;
         });
-    };
+    }
 
     function type(d) {
         d.ani = parse(d["Ani"].split('Anul ')[1]);
         d.valoare = parseFloat($.trim(d['Valoare']))
         return d;
-    };
+    }
 
     var margin = {top: 40, right: 80, bottom: 40, left: 20};
 
@@ -134,7 +134,7 @@ function graph_for_data(file_name, measure_unit) {
 
             $('#number-selection').text(d.valoare);
             $('#year-selection').text(d.ani.getFullYear());
-        };
+        }
 
     });
 
