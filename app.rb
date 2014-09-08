@@ -3,7 +3,6 @@ require 'faraday'
 require 'dalli'
 require 'memcachier'
 
-require_relative 'app/table_controller'
 require_relative 'app/wiring'
 
 module Ronin
@@ -19,11 +18,11 @@ module Ronin
     get '/table/:table_id' do
       content_type 'text/csv'
 
-      table_controller.csv_for(params[:table_id], request.query_string)
+      table = table_controller.get_table(params[:table_id], request.query_string)
+      ins_data_store.get_table(table)
     end
 
     get '/graph/:table_id' do
-
       table = table_controller.get_table(params[:table_id], request.query_string)
 
       haml :graph, locals: {table: table}
