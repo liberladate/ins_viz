@@ -19,3 +19,6 @@
 
     - name: uploading service conf
       copy: src=files/ins_data_viz.conf dest=/etc/init/ins_data_viz.conf
+
+    - name: restarting the unicorn service
+      service: name=ins_data_viz state=restarted
