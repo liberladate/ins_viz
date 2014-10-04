@@ -1,0 +1,21 @@
+---
+- name: Install basic infrastructure for all the projects
+  hosts: digital-ocean
+  user: root
+  tasks:
+    - name: setting up the folder
+      command: mkdir -p /root/deployments/ins_data_viz
+
+    - name: uploading tarball with the project
+      copy: src=../build/ins_data_viz.tar.gz dest=/root/archives/ins_data_viz.tar.gz
+
+    - name: untaring the project
+      command: tar -xvf /root/archives/ins_data_viz.tar.gz -C /root/deployments/ins_data_viz
+
+    - name: getting the gems (maybe i should not be doing this in prod)
+      command: bundle install
+      args:
+        chdir: /root/deployments/ins_data_viz
+
+    - name: uploading service conf
+      copy: src=files/ins_data_viz.conf dest=/etc/init/ins_data_viz.conf
