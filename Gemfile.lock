@@ -7,13 +7,13 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    dalli (2.7.0)
     diff-lcs (1.2.5)
+    fakeredis (0.5.0)
+      redis (~> 3.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     haml (4.0.5)
       tilt
-    memcachier (0.0.2)
     mime-types (2.1)
     mini_portile (0.5.2)
     multipart-post (1.2.0)
@@ -25,6 +25,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.1.1)
+    redis (3.0.6)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -46,10 +47,10 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  dalli
+  fakeredis
   faraday
   haml
-  memcachier
   rake
+  redis
   rspec
   sinatra

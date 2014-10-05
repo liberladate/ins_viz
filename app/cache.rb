@@ -1,10 +1,12 @@
+require 'redis'
+
 module Ronin
 
   class Cache
 
-    def initialize(cache_wrapper)
+    def initialize
       @connection = Faraday.new(:url => 'http://statistici.insse.ro')
-      @cache_wrapper = cache_wrapper
+      @cache_wrapper = Redis.new
     end
 
     def get_table(table)

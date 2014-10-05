@@ -1,15 +1,11 @@
 require 'sinatra'
 require 'faraday'
-require 'dalli'
-require 'memcachier'
 
 require_relative 'app/wiring'
 
 module Ronin
   class Website < Sinatra::Base
     include Wiring
-
-    set :cache, Dalli::Client.new
 
     get '/' do
       haml :home
@@ -30,4 +26,3 @@ module Ronin
 
   end
 end
-

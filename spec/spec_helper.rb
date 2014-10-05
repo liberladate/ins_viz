@@ -1,5 +1,6 @@
 require 'rspec'
 require 'capybara/rspec'
+require 'fakeredis/rspec'
 
 require_relative '../app.rb'
 require_relative 'navigation'

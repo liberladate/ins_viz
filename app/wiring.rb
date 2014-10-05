@@ -6,7 +6,7 @@ module Ronin
 
   module Wiring
     def cache
-      Cache.new(settings.cache)
+      Cache.new
     end
 
     def table_controller
