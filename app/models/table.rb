@@ -99,7 +99,8 @@ module Ronin
     end
 
     def table_data
-      table_data = JSON.parse(IO.read('data/ins.json'))
+      ins_table_data_path = File.join File.dirname(File.expand_path(__FILE__)), '..', '..', 'data', 'ins.json'
+      table_data = JSON.parse(IO.read(ins_table_data_path))
 
       table = {}
       table_data.keys.each do |key|
