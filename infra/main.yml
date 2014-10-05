@@ -22,3 +22,12 @@
 
     - name: restarting the unicorn service
       service: name=ins_data_viz state=restarted
+
+    - name: uploading nginx conf
+      copy: src=files/app_nginx.conf dest=/etc/nginx/sites-available/ins_data_viz.conf
+
+    - name: uploading nginx conf
+      copy: src=files/app_nginx.conf dest=/etc/nginx/sites-enabled/ins_data_viz.conf
+
+    - name: restarting the nginx service
+      service: name=nginx state=restarted
