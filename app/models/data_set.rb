@@ -5,6 +5,10 @@ class DataSet
       @description = description
     end
 
+    def self.fromJSON(json)
+      DataSet.new(name: json['name'], description: json['description'])
+    end
+
     def url
       "/graph/#{@name}"
     end

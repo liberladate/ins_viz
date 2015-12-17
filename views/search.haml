@@ -3,3 +3,16 @@
     %ul
       %li
         %a{href: data_set.url} #{data_set.description}
+
+.search
+  %input#name{placeholder: 'Ceva...'}
+  %button#search Cauta
+
+.search
+  - search_results.each do |data_set|
+    %ul
+      %li
+        %a{href: data_set.url} #{data_set.description}
+
+
+%script{ :src => '/js/search.js'}
