@@ -2,20 +2,9 @@ require 'sinatra'
 require 'faraday'
 
 require_relative 'app/wiring'
+require_relative 'app/models/data_set'
 
 module Ronin
-  class DataSet
-      attr_reader :description
-      def initialize(name: 'none', description: 'none')
-        @name = name
-        @description = description
-      end
-
-      def url
-        "/graph/#{@name}"
-      end
-  end
-
   class Website < Sinatra::Base
     include Wiring
 
