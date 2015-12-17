@@ -1,0 +1,12 @@
+%ul.list
+  - data.each_pair do |category, subcategories|
+    %li
+      #{category}
+      %ul
+        - subcategories.each_pair do |subcategory, data_sets|
+          %li
+            #{subcategory}
+            %ul
+              - data_sets.each do |data_set|
+                %li
+                  %a{href: data_set.url} #{data_set.description}

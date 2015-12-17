@@ -14,6 +14,19 @@ module Ronin
       haml :home
     end
 
+    get '/browse' do
+      data_sets = metadata.get_all
+      data_sets = data_sets.group_by do |table|
+        table.category
+      end
+      data_sets = data_sets.each_pair do |category, tables|
+        data_sets[category] = tables.group_by do |table|
+          table.subcategory
+        end
+      end
+      haml :browse, locals: {data: data_sets}
+    end
+
     get '/search' do
       random_data_sets = metadata.get_random_categories(5)
       haml :search, locals: {random_data_sets: random_data_sets, search_results: []}

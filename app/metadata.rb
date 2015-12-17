@@ -17,6 +17,10 @@ class Metadata
     end)
   end
 
+  def get_all
+    to_data_set(@categories)    
+  end
+
   def to_data_set(list)
     list.map {|json| DataSet.fromJSON(json)}
   end
