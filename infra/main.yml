@@ -6,16 +6,25 @@
     - name: setting up the folder
       command: mkdir -p /root/deployments/ins_data_viz
 
+    - name: setting up the archives folder
+      command: mkdir -p /root/archives/ins_data_viz
+
     - name: uploading tarball with the project
       copy: src=../build/ins_data_viz.tar.gz dest=/root/archives/ins_data_viz.tar.gz
 
     - name: untaring the project
       command: tar -xvf /root/archives/ins_data_viz.tar.gz -C /root/deployments/ins_data_viz
 
+    - name: installing bundler
+      command: bash -lc "gem install bundler"
+
     - name: getting the gems (maybe i should not be doing this in prod)
-      command: bundle install
+      command: bash -lc "bundle install"
       args:
         chdir: /root/deployments/ins_data_viz
+
+    - name: uploading unicorn config
+      copy: src=files/unicorn.rb dest=/root/deployments/ins_data_viz
 
     - name: uploading service conf
       copy: src=files/ins_data_viz.conf dest=/etc/init/ins_data_viz.conf
@@ -32,4 +41,6 @@
     - name: restarting the nginx service
       service: name=nginx state=restarted
   roles:
-    - redis  
+    - redis
+    - kbrebanov.ruby
+    - geerlingguy.nginx

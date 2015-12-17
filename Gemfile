@@ -8,6 +8,7 @@ gem 'faraday'
 gem 'haml'
 
 gem 'redis'
+gem 'unicorn'
 
 gem 'rspec'
 gem 'capybara'
