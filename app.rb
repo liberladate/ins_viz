@@ -15,17 +15,14 @@ module Ronin
     end
 
     get '/search' do
-      top_data_sets = [
-        DataSet.new(name: 'POP101A', description: 'Populatia stabila pe sexe, etc'),
-        DataSet.new(name: 'CON110A', description: 'Productivitatea muncii, etc')
-      ]
-      haml :search, locals: {top_data_sets: top_data_sets, search_results: []}
+      random_data_sets = metadata.get_random_categories(5)
+      haml :search, locals: {random_data_sets: random_data_sets, search_results: []}
     end
 
     get '/search/:term' do
       term = params[:term]
-      data_sets = metadata.search_category(term).map {|json| DataSet.fromJSON(json)}
-      haml :search, locals: {top_data_sets: [], search_results: data_sets}
+      data_sets = metadata.search_category(term)
+      haml :search, locals: {random_data_sets: [], search_results: data_sets}
     end
 
     get '/table/:table_id' do

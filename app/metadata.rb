@@ -6,8 +6,18 @@ class Metadata
   end
 
   def search_category(term)
-    @categories.select do |category|
+    to_data_set(@categories.select do |category|
       category['description'].include?(term)
-    end
+    end)
+  end
+
+  def get_random_categories(number)
+    to_data_set((1..number).to_a.map do
+      @categories[rand(@categories.size)]
+    end)
+  end
+
+  def to_data_set(list)
+    list.map {|json| DataSet.fromJSON(json)}
   end
 end
