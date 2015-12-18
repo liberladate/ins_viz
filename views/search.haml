@@ -1,15 +1,17 @@
-.top
-  Exemple de seturi de date
-  - random_data_sets.each do |data_set|
-    %ul
-      %li
-        %a{href: data_set.url} #{data_set.description}
+%link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/search.css' }
+- if random_data_sets.size > 0
+  .top
+    Exemple de seturi de date
+    - random_data_sets.each do |data_set|
+      %ul
+        %li
+          %a{href: data_set.url} #{data_set.description}
 
-.search
-  %input#name{placeholder: 'Ceva...'}
+%form.search{method: 'GET'}
   %button#search Cauta
+  %input#name{name: 'term', placeholder: 'Exemple: populatie, inflatie, economie'}
 
-.search
+%div
   - search_results.each do |data_set|
     %ul
       %li

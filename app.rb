@@ -28,14 +28,19 @@ module Ronin
     end
 
     get '/search' do
-      random_data_sets = metadata.get_random_categories(5)
-      haml :search, locals: {random_data_sets: random_data_sets, search_results: []}
+      data_sets = []
+      random_data_sets = []
+      if term = params[:term]
+        data_sets = metadata.search_category(term)
+      else
+        random_data_sets = metadata.get_random_categories(5)
+      end
+      
+      haml :search, locals: {random_data_sets: random_data_sets, search_results: data_sets}
     end
 
     get '/search/:term' do
-      term = params[:term]
-      data_sets = metadata.search_category(term)
-      haml :search, locals: {random_data_sets: [], search_results: data_sets}
+
     end
 
     get '/table/:table_id' do
