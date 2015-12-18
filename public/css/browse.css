@@ -1,0 +1,11 @@
+.closed {
+  display: none;
+}
+
+.collapsable {
+  cursor: pointer;
+}
+
+.collapsable:hover {
+  color: gray;
+}

@@ -1,12 +1,15 @@
+%link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/browse.css' }
 %ul.list
   - data.each_pair do |category, subcategories|
     %li
-      #{category}
+      .collapsable #{category}
       %ul
         - subcategories.each_pair do |subcategory, data_sets|
           %li
-            #{subcategory}
-            %ul
+            .collapsable #{subcategory}
+            %ul.closed
               - data_sets.each do |data_set|
                 %li
                   %a{href: data_set.url} #{data_set.description}
+
+%script{ :src => '/js/browse.js'}
