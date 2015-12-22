@@ -1,6 +1,7 @@
 %link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/graph.css' }
 %h2 #{table.description}
-%div.col-md-9#graph_area
+%div.col-md-9
+  %canvas#graph_area{ width: 800, height: 500 }
 %div.col-md-3
   #select-area
     - table.scheme.each_pair do |column, values|
@@ -17,7 +18,7 @@
   #year-selection.small-number
   #number-selection.big-number
 
-
+%script{ :src => 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js' }
 %script{ :src => 'http://d3js.org/d3.v3.min.js' }
 %script{ :src => '/js/main.js' }
 %script{ :src => '/js/graph.js' }
