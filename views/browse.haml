@@ -3,7 +3,7 @@
   - data.each_pair do |category, subcategories|
     %li
       .collapsable #{category}
-      %ul
+      %ul.closed
         - subcategories.each_pair do |subcategory, data_sets|
           %li
             .collapsable #{subcategory}

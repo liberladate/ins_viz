@@ -11,10 +11,6 @@ module Ronin
     include Wiring
 
     get '/' do
-      haml :home
-    end
-
-    get '/browse' do
       data_sets = metadata.get_all
       data_sets = data_sets.group_by do |table|
         table.category
@@ -35,12 +31,8 @@ module Ronin
       else
         random_data_sets = metadata.get_random_categories(5)
       end
-      
+
       haml :search, locals: {random_data_sets: random_data_sets, search_results: data_sets}
-    end
-
-    get '/search/:term' do
-
     end
 
     get '/table/:table_id' do
