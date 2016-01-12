@@ -47,7 +47,7 @@ function graph_for_data(file_name, measure_unit) {
           }
         ]
       };
-    var myNewChart = new Chart(ctx).LineYLegend(graphData, { scaleLabel: "         <%=value%>"});
+    var myNewChart = new Chart(ctx).LineYLegend(graphData, { scaleLabel: "           <%=value%>"});
   }
 
   d3.csv(file_name, type, function (error, values) {
