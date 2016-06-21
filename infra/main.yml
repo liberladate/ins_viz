@@ -3,6 +3,9 @@
   hosts: digital-ocean
   user: root
   tasks:
+    - name: cleaning up apt
+      command: apt-get -y autoremove
+
     - name: setting up the folder
       command: mkdir -p /root/deployments/ins_data_viz
 
