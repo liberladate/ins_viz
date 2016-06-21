@@ -4,9 +4,9 @@
 
 .collapsable {
   cursor: pointer;
-  color: slateblue;
+  color: steelblue;
 }
 
 .collapsable:hover {
-  color: darkslateblue;
+  color: lightslategray;
 }
