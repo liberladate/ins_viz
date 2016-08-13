@@ -25,7 +25,7 @@ function graph_for_data(file_name, measure_unit) {
       };
 
       new Chart(ctx, {
-          type: 'line',
+          type: 'bar',
           data: graphData,
           options: {
               scales: {
@@ -33,6 +33,11 @@ function graph_for_data(file_name, measure_unit) {
                           ticks: {
                               min: 0,
                               beginAtZero: true
+                          }
+                      }],
+                      xAxes: [{
+                          gridLines: {
+                              drawOnChartArea: false
                           }
                       }]
                   }
