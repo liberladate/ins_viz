@@ -57,13 +57,17 @@ module Ronin
     end
 
     private
+    @column_values = {}
     def columns
-      column_values = {}
-      table_data['scheme'].each_pair do |column_name, values|
-        column_values[column_name] = default_values_for_column(column_name, values)
-        column_values[column_name] = value_from_query(column_name, values) if @query.include?(column_name)
+      unless @column_values.nil? or @column_values.empty?
+        return @column_values
       end
-      column_values
+      @column_values = {}
+      table_data['scheme'].each_pair do |column_name, values|
+        @column_values[column_name] = default_values_for_column(column_name, values)
+        @column_values[column_name] = value_from_query(column_name, values) if @query.include?(column_name)
+      end
+      @column_values
     end
 
     def value_from_query(column_name, values)
