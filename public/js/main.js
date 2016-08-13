@@ -8,17 +8,13 @@ function graph_for_data(file_name, measure_unit) {
   }
 
   function draw(data) {
-    var graphData = {
+      var barColor = "rgba(192, 194, 195, 0.7)";
+      var graphData = {
       labels: data.map(function(item) {return item.ani}),
       datasets: [
           {
               label: measure_unit,
-              fillColor: "rgba(220,220,220,0.3)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(220,220,220,1)",
+              backgroundColor: barColor,
               data: data.map(function(item) {return item.valoare})
           }
         ]
