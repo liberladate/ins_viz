@@ -102,9 +102,15 @@ module Ronin
       return {:row => values.keys.first, :index => values[values.keys.first]}
     end
 
+    @cached_table_data = nil
+
     def table_data
-      ins_table_data_path = File.join File.dirname(File.expand_path(__FILE__)), '..', '..', 'data', 'ins.json'
-      table_data = JSON.parse(IO.read(ins_table_data_path))
+      table_data = if @cached_table_data
+                     @cached_table_data
+                   else
+                     ins_table_data_path = File.join File.dirname(File.expand_path(__FILE__)), '..', '..', 'data', 'ins.json'
+                     @cached_table_data = JSON.parse(IO.read(ins_table_data_path))
+                   end
 
       table = {}
       table_data.keys.each do |key|
