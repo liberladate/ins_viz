@@ -23,6 +23,10 @@ module Ronin
       haml :browse, locals: {data: data_sets}
     end
 
+    get '/contact' do
+      haml :contact
+    end
+
     get '/search' do
       data_sets = []
       random_data_sets = []
