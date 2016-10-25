@@ -43,7 +43,22 @@
 
     - name: restarting the nginx service
       service: name=nginx state=restarted
+  vars:
+    filebeat_config_prospectors: |
+      filebeat:
+        prospectors:
+          -
+            input_type: log
+            paths:
+              - /var/log/unicorn.stderr.log
+    filebeat_config_output: |
+      output:
+        elasticsearch:
+          hosts: ["https://logsene-receiver.sematext.com:443"]
+          protocol: https
+          index: "{{ lookup('env','SEMATEXT_TOKEN') }}"
   roles:
     - redis
     - kbrebanov.ruby
     - geerlingguy.nginx
+    - torian.filebeat
