@@ -10,3 +10,14 @@
 .collapsable:hover {
   color: lightslategray;
 }
+
+.category {
+  list-style: none;
+  width: 32%;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}

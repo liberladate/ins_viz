@@ -1,0 +1,11 @@
+%link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/category.css' }
+%div
+  .title
+    Lista tabelelor pentru categoria
+    %b #{category}
+  - data.each do |data_set|
+    %ul
+      %li
+        %a{href: data_set.url} #{data_set.description}
+
+

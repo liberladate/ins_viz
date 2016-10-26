@@ -3,18 +3,15 @@
 
 = haml :searchForm, :layout => false
 
-%ul.list
+%div.card-container
   - data.each_pair do |category, subcategories|
-    %li
-      .collapsable #{category}
-      %ul.closed
-        - subcategories.each_pair do |subcategory, data_sets|
+    .panel.panel-default.category
+      .panel-heading
+        #{category}
+      .panel-body
+        - subcategories.each_pair do |subcategory, _|
           %li
-            .collapsable #{subcategory}
-            %ul.closed
-              - data_sets.each do |data_set|
-                %li
-                  %a{href: data_set.url} #{data_set.description}
+            %a{href: "/categorie/#{subcategory}"} #{subcategory}
 
 - if random_data_sets.size > 0
   .top

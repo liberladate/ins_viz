@@ -21,9 +21,19 @@ module Ronin
         end
       end
 
+      card_groupings = data_sets.select {|_, tables| tables.length > 1}
+      single_value_items = data_sets.select { |_, tables| tables.length <= 1 }
+      card_groupings['Altele'] = single_value_items.keys.reduce({}) {|result, key| result.merge(single_value_items[key]) }
+
       random_data_sets = metadata.get_random_categories(5)
 
-      haml :browse, locals: {data: data_sets, random_data_sets: random_data_sets}
+      haml :browse, locals: {data: card_groupings, random_data_sets: random_data_sets}
+    end
+
+    get '/categorie/:category_name' do
+      category = params[:category_name]
+      tables = metadata.get_all.select {|table| table.subcategory == category }
+      haml :category, locals: {data: tables, category: category}
     end
 
     get '/contact' do
