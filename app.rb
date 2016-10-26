@@ -25,7 +25,7 @@ module Ronin
       single_value_items = data_sets.select { |_, tables| tables.length <= 1 }
       card_groupings['Altele'] = single_value_items.keys.reduce({}) {|result, key| result.merge(single_value_items[key]) }
 
-      random_data_sets = metadata.get_random_categories(5)
+      random_data_sets = metadata.get_random_categories(3)
 
       haml :browse, locals: {data: card_groupings, random_data_sets: random_data_sets}
     end
