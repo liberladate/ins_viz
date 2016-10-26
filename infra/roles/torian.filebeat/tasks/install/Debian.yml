@@ -1,0 +1,38 @@
+---
+
+- name: Elastic APT Key
+  apt_key:
+    state=present
+    url="{{filebeat_apt_key}}"
+
+- name : FileBeat APT Repository
+  apt_repository:
+    state=present
+    repo="deb {{filebeat_apt_repository}} stable main"
+    update_cache=yes
+  when: filebeat_use_apt_repo
+
+- name: Install FileBeat (Debian)
+  apt:
+    state="{{ (filebeat_upgrade) | ternary('latest', 'present') }}"
+    name="{{item}}"
+  with_items: "{{ filebeat_packages }}"
+  notify: filebeat restart
+  when: filebeat_use_apt_repo
+
+- name: Download FileBeat .deb
+  get_url:
+    url: "{{ filebeat_deb_baseurl }}/{{ item }}-{{ filebeat_version }}-amd64.deb"
+    dest: "/var/cache/apt/archives/{{ item }}-{{ filebeat_version }}-amd64.deb"
+  with_items: "{{ filebeat_packages }}"
+  when: not filebeat_use_apt_repo
+
+- name: Install FileBeat .deb
+  apt:
+    deb: "/var/cache/apt/archives/{{ item }}-{{ filebeat_version }}-amd64.deb"
+    state: present
+  with_items: "{{ filebeat_packages }}"
+  notify: filebeat restart
+  when: not filebeat_use_apt_repo
+
+# vi:ts=2:sw=2:et:ft=yaml
