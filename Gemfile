@@ -13,6 +13,8 @@ gem 'unicorn'
 gem 'rspec'
 gem 'capybara'
 
+gem 'rdiscount'
+
 group :test  do
   gem "fakeredis", :require => "fakeredis/rspec"
 end

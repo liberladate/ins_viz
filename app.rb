@@ -5,6 +5,7 @@ require_relative 'app/wiring'
 require_relative 'app/models/data_set'
 
 require 'json'
+require 'rdiscount'
 
 module Ronin
   class Website < Sinatra::Base
@@ -58,6 +59,11 @@ module Ronin
       table = table_controller.get_table(params[:table_id], request.query_string)
 
       haml :graph, locals: {table: table}
+    end
+
+    get '/despre' do
+      content = markdown File.read('README.md')
+      haml content
     end
 
   end
