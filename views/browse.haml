@@ -1,4 +1,11 @@
 %link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/browse.css' }
+%link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/search.css' }
+
+%form.search{method: 'GET', action: '/search'}
+  %button#search Cauta
+  %input#name{name: 'term', placeholder: 'Exemple: populatie, inflatie, economie'}
+
+
 %ul.list
   - data.each_pair do |category, subcategories|
     %li
@@ -12,4 +19,14 @@
                 %li
                   %a{href: data_set.url} #{data_set.description}
 
+- if random_data_sets.size > 0
+  .top
+    Exemple de seturi de date
+    - random_data_sets.each do |data_set|
+      %ul
+        %li
+          %a{href: data_set.url} #{data_set.description}
+
+
 %script{ :src => '/js/browse.js'}
+%script{ :src => '/js/search.js'}

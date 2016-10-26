@@ -20,7 +20,10 @@ module Ronin
           table.subcategory
         end
       end
-      haml :browse, locals: {data: data_sets}
+
+      random_data_sets = metadata.get_random_categories(5)
+
+      haml :browse, locals: {data: data_sets, random_data_sets: random_data_sets}
     end
 
     get '/contact' do
@@ -28,15 +31,10 @@ module Ronin
     end
 
     get '/search' do
-      data_sets = []
-      random_data_sets = []
-      if term = params[:term]
-        data_sets = metadata.search_category(term)
-      else
-        random_data_sets = metadata.get_random_categories(5)
-      end
+      term = params[:term]
+      data_sets = term ? metadata.search_category(term) : []
 
-      haml :search, locals: {random_data_sets: random_data_sets, search_results: data_sets}
+      haml :search, locals: {search_results: data_sets}
     end
 
     get '/table/:table_id' do
