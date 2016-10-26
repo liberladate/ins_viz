@@ -1,10 +1,7 @@
 %link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/browse.css' }
 %link{ :rel=> 'stylesheet', :type => 'text/css',  :href => '/css/search.css' }
 
-%form.search{method: 'GET', action: '/search'}
-  %button#search Cauta
-  %input#name{name: 'term', placeholder: 'Exemple: populatie, inflatie, economie'}
-
+= haml :searchForm, :layout => false
 
 %ul.list
   - data.each_pair do |category, subcategories|
