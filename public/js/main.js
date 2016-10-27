@@ -8,7 +8,7 @@ function graph_for_data(file_name, measure_unit) {
   }
 
   function draw(data) {
-      var barColor = "rgba(192, 194, 195, 0.7)";
+      var barColor = "rgba(153, 102, 153, 0.7)";
       var graphData = {
       labels: data.map(function(item) {return item.ani}),
       datasets: [
