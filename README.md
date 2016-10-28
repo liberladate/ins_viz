@@ -3,7 +3,7 @@ Liber la date
 
 [Institutul National de Statistica](http://www.insse.ro) a facut public accesibile datele pe care le poseda. Aceste date pot fi gasite [aici](http://statistici.insse.ro/shop/). Considerand ca pana de curand aceste date puteau fi vizualizate doar contracost, efortul INS trebuie admirat si folosit ca exemplu. 
 
-Vizualizarea acestor date folosind [siteul INS](http://statistici.insse.ro/shop/) este greoaie si, nu tocmai, intuitiva. Plecand de la intuitia ca vizualizarea datelor poate fi imbunatatita, [ins_viz](http://liberladate.ro/) a fost dezvoltat. Proiectul nu face altceva decat sa foloseasca structura tabelelor asa cum este ea prezentata pe siteul INS si sa interogheze direct un serverele INS pentru datele efective ce apar in grafice
+Vizualizarea acestor date folosind [siteul INS](http://statistici.insse.ro/shop/) este greoaie si, nu tocmai, intuitiva. Plecand de la intuitia ca vizualizarea datelor poate fi imbunatatita, [liberladate](http://liberladate.ro/) a fost dezvoltat. Proiectul nu face altceva decat sa foloseasca structura tabelelor asa cum este ea prezentata pe siteul INS si sa interogheze direct un serverele INS pentru datele efective ce apar in grafice
 
 Moduri de vizualizare
 -----
