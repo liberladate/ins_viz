@@ -1,5 +1,6 @@
 function graph_for_data(file_name, measure_unit) {
   var ctx = $("#graph_area").get(0).getContext("2d");
+  var loading = $(".loading").get(0);
 
   function type(d) {
       d.ani = d["Ani"].split('Anul ')[1];
@@ -42,6 +43,7 @@ function graph_for_data(file_name, measure_unit) {
   }
 
   d3.csv(file_name, type, function (error, values) {
+    loading.remove();
     draw(values);
   })
 

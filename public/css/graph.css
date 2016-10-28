@@ -56,3 +56,10 @@ li {
     text-align: center;
     color: #ABD7ED;
 }
+
+.loading {
+    position: relative;
+    top: 250px;
+    left: 100px;
+    font-size: 24px;
+}
