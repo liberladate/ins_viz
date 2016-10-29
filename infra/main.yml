@@ -44,6 +44,9 @@
     - name: uploading logstash conf
       template: src=files/logstash.conf dest=/etc/logstash/conf.d/01_liberladate.conf
 
+    - name: uploading nginx logstash conf
+      template: src=files/nginx.logstash.conf dest=/etc/logstash/conf.d/02_nginx.conf
+
     - name: restarting the nginx service
       service: name=nginx state=restarted
 
