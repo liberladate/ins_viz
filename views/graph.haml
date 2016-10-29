@@ -16,12 +16,17 @@
               %option #{value}
     %button#query_btn.btn.btn-primary Arata
 
-  #year-selection.small-number
-  #number-selection.big-number
+  %ssk-group
+    %a{ href:'', class:'ssk ssk-twitter'}
+    %a{ href:'', class:'ssk ssk-facebook'}
+    %a{ href:'', class:'ssk ssk-linkedin'}
 
 %script{ :src => 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js' }
 %script{ :src => 'http://d3js.org/d3.v3.min.js' }
 %script{ :src => '/js/main.js' }
 %script{ :src => '/js/graph.js' }
+%script{ :src => '/js/social-share-kit.js' }
+%script{ type: 'text/javascript'}
+  SocialShareKit.init();
 %script
   graph_for_data("#{table.url}", "#{table.measure_unit}");
