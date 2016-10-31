@@ -5,7 +5,7 @@ module Ronin
 
     describe 'Homepage' do
       it 'should have the correct title' do
-        expect(homepage.title).to eq 'Vizualizare grafica a datelor INS'
+        expect(homepage.title).to eq 'Vizualizarea grafica a datelor INS'
       end
     end
 
@@ -17,7 +17,7 @@ module Ronin
 
     describe 'Table graph page' do
       it 'should return a page with the correct title' do
-        expect(graph('POP105A').title).to include 'Vizualizare grafica a datelor INS'
+        expect(graph('POP105A').status_code).to eq(200)
       end
     end
 
