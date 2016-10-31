@@ -18,10 +18,10 @@
 
   %div.line.to-bottom
     Descarca:
-    %a.btn.btn-success{ download: table.description, id: 'download', href: ''}
-      Graficul
-    %a.btn.btn-info{ download: table.description, href: table.url}
-      Datele
+    %a.btn.btn-success{ download: "#{table.description}.png", id: 'download', href: ''}
+      Grafic
+    %a.btn.btn-info{ download: "#{table.description}.csv", href: table.url}
+      Date
   %div.line.to-bottom
     %ssk-group
       %a{ href:'', class:'ssk ssk-twitter'}
