@@ -4,6 +4,7 @@ gem 'rake'
 gem 'rerun'
 
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'faraday'
 gem 'haml'
 

@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/content_for'
 require 'faraday'
 
 require_relative 'app/wiring'
@@ -9,6 +10,7 @@ require 'rdiscount'
 
 module Ronin
   class Website < Sinatra::Base
+    helpers Sinatra::ContentFor
     include Wiring
 
     get '/' do
