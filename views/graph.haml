@@ -16,10 +16,17 @@
               %option #{value}
     %button#query_btn.btn.btn-primary Arata
 
-  %ssk-group
-    %a{ href:'', class:'ssk ssk-twitter'}
-    %a{ href:'', class:'ssk ssk-facebook'}
-    %a{ href:'', class:'ssk ssk-linkedin'}
+  %div.line.to-bottom
+    Descarca:
+    %a.btn.btn-success{ download: table.description, id: 'download', href: ''}
+      Graficul
+    %a.btn.btn-info{ download: table.description, href: table.url}
+      Datele
+  %div.line.to-bottom
+    %ssk-group
+      %a{ href:'', class:'ssk ssk-twitter'}
+      %a{ href:'', class:'ssk ssk-facebook'}
+      %a{ href:'', class:'ssk ssk-linkedin'}
 
 %script{ :src => 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js' }
 %script{ :src => 'http://d3js.org/d3.v3.min.js' }
